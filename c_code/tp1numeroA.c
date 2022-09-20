@@ -1,6 +1,7 @@
 #include<stdio.h>//entete  etudiant:Gabriel Derome
 int main()//principal
 {
+    int compte_de_patient = 0;//compte de client a l'origine
     while (1)//boucle
     {
         float weight;//definition de variable
@@ -27,7 +28,6 @@ int main()//principal
         {
         printf("\nOBESITE, RISQUE TRES ELEVE");//avertissement
         }
-        int compte_de_patient = 0;//compte de client a l'origine
         compte_de_patient = compte_de_patient + 1;//compte d'iteration
         printf("\nClient#:%d",compte_de_patient);//affichage du compte de client
         int choice;//definition de variable
@@ -41,3 +41,33 @@ int main()//principal
         }
     return 0;
 }
+// RESULTATS
+// 51
+// 1.98
+// votre indice de masse corporelle est de:13.008876
+// le poids du patient en kg est de: 51.00la taille du patient en m: 1.98
+// MAIGREUR, RISQUE ELEVE A ACCRU
+// Client#:1
+
+// 69.4
+// 1.63
+// votre indice de masse corporelle est de:26.120668
+// le poids du patient en kg est de: 69.40la taille du patient en m: 1.63
+// EMBONPOINT, RISQUE ELEVE
+// Client#:2
+
+// 60
+// 1.65
+// votre indice de masse corporelle est de:22.038568
+// le poids du patient en kg est de: 60.00la taille du patient en m: 1.65
+// POIDS NORMAL, RISQUE FAIBLE
+// Client#:3
+
+// 100
+// 1.72
+// votre indice de masse corporelle est de:33.802055
+// le poids du patient en kg est de: 100.00la taille du patient en m: 1.72
+// OBESITE, RISQUE TRES ELEVE
+// Client#:4
+
+// compte total de client:4

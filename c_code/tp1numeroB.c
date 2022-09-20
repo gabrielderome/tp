@@ -71,3 +71,41 @@ int main() {//principale
   printf("le perimetre moyen des rectangles: %2.f\n", avgperi);
   return 0;
 }
+// c1 
+// 7.5 = rayon
+// l'aire du cercle = 176.71
+// le perimetre du cercle = 47.12
+
+// r1
+// 9.2 = hauteur
+// 4.8 = base
+// l'aire du rectangle= 44
+// le perimetre du rectangle = 28
+
+// c2
+// 8.3 = rayon
+// l'aire du cercle = 216.42
+// le perimetre du cercle = 52.15
+
+// r2
+// 5.3 = hauteur
+// 3.7 = base
+// l'aire du rectangle= 20
+// le perimetre du rectangle = 18
+
+// c3
+// 3.9 = rayon
+// l'aire du cercle = 47.78
+// le perimetre du cercle = 24.50
+
+// r3
+// 15.1 = hauteur
+// 5.9 = base
+// l'aire du rectangle= 89
+// le perimetre du rectangle = 42
+
+// nombre de rectangle construit: 3
+// le cercle avec le plus grand perimetre as un perimetre de: 52.150394
+// le rectangle avec la plus grande aire as une aire de: 89.090004
+// le carre avec le plus petit cote avait un cote de: 0
+// le perimetre moyen des rectangles: 29

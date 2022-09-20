@@ -27,7 +27,7 @@ int main()//principal
         {
         printf("\nOBESITE, RISQUE TRES ELEVE");//avertissement
         }
-        int compte_de_patient;//compte de client a l'origine
+        int compte_de_patient = 0;//compte de client a l'origine
         compte_de_patient = compte_de_patient + 1;//compte d'iteration
         printf("\nClient#:%d",compte_de_patient);//affichage du compte de client
         int choice;//definition de variable

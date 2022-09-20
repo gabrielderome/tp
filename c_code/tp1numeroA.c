@@ -10,8 +10,8 @@ int main()//principal
         scanf("%f%f", & weight, & hight);//reponses
         float imc = weight/(hight*hight);//calcul de l'imc
         printf("\nvotre indice de masse corporelle est de:%f\n", imc);//affichage de l'imc
-        printf("le poids du patient en kg est de: %.2f", weight);//affichage du poids
-        printf("la taille du patient en m: %.2f", hight);//affichage de la taille
+        printf("\nle poids du patient en kg est de: %.2f", weight);//affichage du poids
+        printf("\nla taille du patient en m: %.2f", hight);//affichage de la taille
         if (imc < 18.5)//if statement
         {
             printf("\nMAIGREUR, RISQUE ELEVE A ACCRU");//avertissement
@@ -45,28 +45,32 @@ int main()//principal
 // 51
 // 1.98
 // votre indice de masse corporelle est de:13.008876
-// le poids du patient en kg est de: 51.00la taille du patient en m: 1.98
+// le poids du patient en kg est de: 51.00
+// la taille du patient en m: 1.98
 // MAIGREUR, RISQUE ELEVE A ACCRU
 // Client#:1
 
 // 69.4
 // 1.63
 // votre indice de masse corporelle est de:26.120668
-// le poids du patient en kg est de: 69.40la taille du patient en m: 1.63
+// le poids du patient en kg est de: 69.40
+// la taille du patient en m: 1.63
 // EMBONPOINT, RISQUE ELEVE
 // Client#:2
 
 // 60
 // 1.65
 // votre indice de masse corporelle est de:22.038568
-// le poids du patient en kg est de: 60.00la taille du patient en m: 1.65
+// le poids du patient en kg est de: 60.00
+// la taille du patient en m: 1.65
 // POIDS NORMAL, RISQUE FAIBLE
 // Client#:3
 
 // 100
 // 1.72
 // votre indice de masse corporelle est de:33.802055
-// le poids du patient en kg est de: 100.00la taille du patient en m: 1.72
+// le poids du patient en kg est de: 100.00
+// la taille du patient en m: 1.72
 // OBESITE, RISQUE TRES ELEVE
 // Client#:4
 

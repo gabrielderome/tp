@@ -1,11 +1,12 @@
-#include <stdarg.h>//entete etudiant:Gabriel Derome
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>//entete etudiant:Gabriel Derome
 int main() {//principale
   char shape;//definition de variables
   char circle = 'c';
+  char circlec = 'C';
   char rectangle = 'r';
+  char rectangler = 'R';
   char square = 'k';
+  char squarek = 'K';
   int choice;
   float maxperimetrec = 0.00;
   float maxairer = 0.00;
@@ -14,9 +15,9 @@ int main() {//principale
   float sumperimetre = 0;
   while(1)//boucle
   {
-    printf("tapez c pour cercle \ntapez r pour rectangle \ntapez k pour carre\n");//choix de la forme
-    scanf("\n %c", &shape);
-    if (shape == circle) {//CERCLE
+      printf("tapez c pour cercle \ntapez r pour rectangle \ntapez k pour carre\n");//choix de la forme
+      scanf("\n %c", &shape);
+      if ((shape == circle) || (shape == circlec)) {//CERCLE
       float rayon;//definition de variable
       printf("veuillez entrer le rayon du cercle: \n");//entre du rayon
       scanf("\n %f", &rayon);
@@ -26,8 +27,8 @@ int main() {//principale
          maxperimetrec = perimetrec;
       }
       printf("l'aire du cercle = %.2f\n", airec);//affichage des donnes
-      printf("le perimetre du cercle = %.2f", perimetrec);                                                                 
-    } else if (shape == rectangle) {//RECTANGLE
+      printf("le perimetre du cercle = %.2f\n", perimetrec);                                                                 
+    } else if ((shape == rectangle) || (shape == rectangler)) {//RECTANGLE
       float base;//definition de variables
       float hauteur;
       printf("veuillez entrer la hauteur puis, la base du rectangle\n");//entre de la base et de la hauteur
@@ -42,7 +43,7 @@ int main() {//principale
       if (airer > maxairer){//max aire?
          maxairer = airer;
       }
-    } else if (shape == square){//CARRE
+    } else if ((shape == square) || (shape == squarek)){//CARRE
       float cote;//definition de variable
       printf("veuillez entrer le cote du carre\n");//entre du cote
       scanf("\n %f", & cote);
@@ -71,41 +72,72 @@ int main() {//principale
   printf("le perimetre moyen des rectangles: %2.f\n", avgperi);
   return 0;
 }
-// c1 
-// 7.5 = rayon
+// OUTPUT
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// C
+// veuillez entrer le rayon du cercle: 
+// 7.5
 // l'aire du cercle = 176.71
 // le perimetre du cercle = 47.12
 
-// r1
-// 9.2 = hauteur
-// 4.8 = base
+// Avez vous fini? 2 pour oui, 1 pour Non: 1
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// r
+// veuillez entrer la hauteur puis, la base du rectangle
+// 9.2
+// 4.8
 // l'aire du rectangle= 44
 // le perimetre du rectangle = 28
 
-// c2
-// 8.3 = rayon
+// Avez vous fini? 2 pour oui, 1 pour Non: 1
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// c
+// veuillez entrer le rayon du cercle: 
+// 8.3
 // l'aire du cercle = 216.42
 // le perimetre du cercle = 52.15
 
-// r2
-// 5.3 = hauteur
-// 3.7 = base
+// Avez vous fini? 2 pour oui, 1 pour Non: 1
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// R
+// veuillez entrer la hauteur puis, la base du rectangle
+// 5.3
+// 3.7
 // l'aire du rectangle= 20
 // le perimetre du rectangle = 18
 
-// c3
-// 3.9 = rayon
+// Avez vous fini? 2 pour oui, 1 pour Non: 1
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// C
+// veuillez entrer le rayon du cercle: 
+// 3.9
 // l'aire du cercle = 47.78
 // le perimetre du cercle = 24.50
 
-// r3
-// 15.1 = hauteur
-// 5.9 = base
+// Avez vous fini? 2 pour oui, 1 pour Non: 1
+// tapez c pour cercle 
+// tapez r pour rectangle 
+// tapez k pour carre
+// r
+// veuillez entrer la hauteur puis, la base du rectangle
+// 15.1
+// 5.9
 // l'aire du rectangle= 89
 // le perimetre du rectangle = 42
 
+// Avez vous fini? 2 pour oui, 1 pour Non: 2
 // nombre de rectangle construit: 3
 // le cercle avec le plus grand perimetre as un perimetre de: 52.150394
 // le rectangle avec la plus grande aire as une aire de: 89.090004
-// le carre avec le plus petit cote avait un cote de: 0
+// le carre avec le plus petit cote avait un cote de: 0.000000
 // le perimetre moyen des rectangles: 29

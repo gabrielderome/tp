@@ -1,18 +1,8 @@
 #include <stdio.h>//entete etudiant:Gabriel Derome
 int main() {//principale
-  char shape;//definition de variables
-  char circle = 'c';
-  char circlec = 'C';
-  char rectangle = 'r';
-  char rectangler = 'R';
-  char square = 'k';
-  char squarek = 'K';
-  int choice;
-  float maxperimetrec = 0.00;
-  float maxairer = 0.00;
-  float mincote = 0;
-  int reccompte = 0;
-  float sumperimetre = 0;
+  char shape, circle = 'c', circlec = 'C', rectangle = 'r', rectangler = 'R', square = 'k', squarek = 'K';//definition de variables
+  int choice, reccompte = 0;
+  float maxperimetrec = 0.00, maxairer = 0.00, mincote = 0.00, sumperimetre = 0.00;
   while(1)//boucle
   {
       printf("tapez c pour cercle \ntapez r pour rectangle \ntapez k pour carre\n");//choix de la forme
@@ -21,25 +11,22 @@ int main() {//principale
       float rayon;//definition de variable
       printf("veuillez entrer le rayon du cercle: \n");//entre du rayon
       scanf("\n %f", &rayon);
-      float airec = 3.14159 * rayon * rayon;//calculs
-      float perimetrec = 3.14159 * 2 * rayon;
+      float airec = 3.14159 * rayon * rayon, perimetrec = 3.14159 * 2 * rayon;//calculs
       if (perimetrec > maxperimetrec){//max perimetre?
          maxperimetrec = perimetrec;
       }
       printf("l'aire du cercle = %.2f\n", airec);//affichage des donnes
       printf("le perimetre du cercle = %.2f\n", perimetrec);                                                                 
     } else if ((shape == rectangle) || (shape == rectangler)) {//RECTANGLE
-      float base;//definition de variables
-      float hauteur;
+      float base, hauteur;//definition de variables
       printf("veuillez entrer la hauteur puis, la base du rectangle\n");//entre de la base et de la hauteur
       scanf("\n %f", &base);
       scanf("\n %f", &hauteur);
-      float airer = base * hauteur;//calculs
-      float perimetrer = 2 * base + 2 * hauteur;
+      float airer = base * hauteur, perimetrer = 2 * base + 2 * hauteur;//calculs
       printf("l'aire du rectangle= %2.f\n", airer);//affichage des donnes
       printf("le perimetre du rectangle = %2.f\n", perimetrer);                                                      
-      reccompte = reccompte + 1;//compte de rectangles
-      sumperimetre = sumperimetre + perimetrer;//sum des perimetres
+      reccompte += 1;//compte de rectangles
+      sumperimetre += perimetrer;//sum des perimetres
       if (airer > maxairer){//max aire?
          maxairer = airer;
       }
@@ -47,8 +34,7 @@ int main() {//principale
       float cote;//definition de variable
       printf("veuillez entrer le cote du carre\n");//entre du cote
       scanf("\n %f", & cote);
-      float airek = cote * cote;//calculs
-      float perimetrek = cote * 4;
+      float airek = cote * cote, perimetrek = cote * 4;//calculs
       printf("l'aire du carre= %2.f\n", airek);//affichage des donnes
       printf("le perimetre du carre= %2.f\n", perimetrek);
       if ((cote < mincote) || (mincote == 0)){//min cote?

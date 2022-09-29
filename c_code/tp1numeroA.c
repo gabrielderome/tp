@@ -1,8 +1,7 @@
 #include<stdio.h>//entete  etudiant:Gabriel Derome
 int main()//principal
 {
-    int compte_de_patient = 0;//compte de client a l'origine
-    int choice;//definition de variable
+    int compte_de_patient = 0, choice;//compte de client a l'origine et definition de la variable "choice"
     while (1)//boucle
     {
         float weight, hight;//definition de variables

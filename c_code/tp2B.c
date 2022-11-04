@@ -103,5 +103,39 @@ int main()
     printf("\nL'age moyen chez les operateurs est de:\n %.2f\n", avgageo);
     printf("\nL'age moyen chez les programmeurs est de:\n %.2f\n", avgagep);
     printf("\nL'age moyen chez les analystes est de:\n %.2f\n", avgagea);
+    int x, j, tempa, tempN, tempp;
+    for (x = 0; x < (lengtha - 1); ++x)
+    {
+        for (j = 0; j < lengtha - 1 - x; ++j )
+        {
+            if (age[j] > age[j+1])
+            {
+                tempa = age[j+1];
+                tempN = Nbcafe[j+1];
+                tempp = poste[j+1];
+                age[j+1] = age[j];
+                Nbcafe[j+1] = Nbcafe[j];
+                poste[j+1] = poste[j];
+                age[j] = tempa;
+                Nbcafe[j] = tempN;
+                poste[j] = tempp;
+            }
+        }
+    }
+    printf("\n\nle tableau des ages rearange:\n");
+    for (int i = 0; i < lengtha; i++) 
+    {     
+        printf("%d ", age[i]);     
+    }
+    printf("\n\nle tableau des cafes rearanger:\n");
+    for (int i = 0; i < lengthN; i++) 
+    {     
+        printf("%d ", Nbcafe[i]);     
+    }
+    printf("\n\nle tableau des postes rearanger:\n");
+    for (int i = 0; i < lengthN; i++) 
+    {     
+        printf("%c ", poste[i]);     
+    }
 return 0;
 }

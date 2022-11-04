@@ -36,8 +36,8 @@ int main()//principal
            printf("\ncompte total de client:%d\n",compte_de_patient);//affichage du nombre de patients
            break;//la boucle est boucle
          }
-    }
-    return 0;
+        }
+return 0;
 }
 // OUTPUT
 // veuillez entrer le poids du patient(kg), suivis de ca grandeur(m): 

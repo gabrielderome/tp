@@ -9,7 +9,15 @@ int main()
     int lengtha = sizeof(age)/sizeof(age[0]);
     int countprog = 0;
     int countsec = 0;
+    int countop = 0;
+    int counta = 0;
     int mincafea = 100;
+    int maxagep = 0;
+    int sommecafeo = 0;
+    int sommeageo = 0;
+    int sommeagep = 0;
+    int sommeagea = 0;
+    float avgcafeo, avgageo, avgagep, avgagea;
     printf("\nle tableau des poste:\n");
     for (int i = 0; i < lengthp; i++) 
         {     
@@ -32,7 +40,7 @@ int main()
             countprog += 1;
         }
     }
-    printf("\nil y a %d programmeurs", countprog);
+    printf("\n\nil y a %d programmeurs\n", countprog);
     for (int i = 0; i < lengthp; i++)
     {
         if (poste[i] == 's')
@@ -40,7 +48,7 @@ int main()
            countsec += 1; 
         }
     }
-    printf("\nil y a %d secraitaires", countsec);
+    printf("\nil y a %d secraitaires\n", countsec);
     for (int i = 0; i < lengthp; i++)
     {
         if (poste[i] == 'a')
@@ -52,5 +60,48 @@ int main()
         }
     }
     printf("\nLe plus petits nombre de cafes matinal pour les analyste est:\n%d\n", mincafea);
+     for (int i = 0; i < lengthp; i++)
+    {
+        if (poste[i] == 'p')
+        {
+            if (age[i] > maxagep)
+            {
+                maxagep = age[i];
+            }
+        }
+    }
+    printf("\nLe plus vieux des programmeurs a %d ans\n", maxagep);
+     for (int i = 0; i < lengthp; i++)
+    {
+        if (poste[i] == 'o')
+        {
+        countop += 1;
+           sommecafeo += Nbcafe[i];
+        }
+    }
+    avgcafeo = sommecafeo / countop;
+    printf("\nLa consomation moyenne de cafe chez les operateurs est de:\n %.2f", avgcafeo);
+    for (int i = 0; i < lengthp; i++)
+    {
+        if (poste[i] == 'o')
+        {
+           sommeageo += age[i];
+        }
+        else if (poste[i] == 'p')
+        {
+            sommeagep += age[i];
+        }
+        else if (poste[i] == 'a')
+        {
+            counta += 1;
+            sommeagea += age[i];
+        }
+    }
+    avgageo = sommeageo / countop;
+    avgagep = sommeagep / countprog;
+    avgagea = sommeagea / counta;
+    printf("\nL'age moyen chez les operateurs est de:\n %.2f\n", avgageo);
+    printf("\nL'age moyen chez les programmeurs est de:\n %.2f\n", avgagep);
+    printf("\nL'age moyen chez les analystes est de:\n %.2f\n", avgagea);
 return 0;
 }

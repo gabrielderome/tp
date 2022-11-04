@@ -39,7 +39,7 @@ int main()//principal
            break;//la boucle est boucle
          }
         }
-    return 0;
+return 0;
 }
 // RESULTATS
 // 51

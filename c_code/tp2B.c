@@ -131,6 +131,7 @@ int main()
     printf("\n\n");
 return 0;
 }
+
 // RESULTATS
 //-------------------------------
 // le tableau des poste:

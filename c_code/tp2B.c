@@ -12,7 +12,7 @@ int main()
     printf("\nle tableau des poste:\n");//affichage des tableaux lignes 12-26
     for (int i = 0; i < lengthp; i++) 
         {     
-        printf("%d ", poste[i]); 
+        printf("%c ", poste[i]); 
         }
     printf("\n\nle tableau des cafes:\n");
     for (int i = 0; i < lengthN; i++) 

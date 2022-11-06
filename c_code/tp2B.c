@@ -50,7 +50,7 @@ int main()
             }
         }
     }
-    printf("\nLe plus petits nombre de cafes matinal pour les analyste est:\n %d\n", mincafea);
+    printf("\nLe plus petits nombre de cafes matinal pour les analyste est:\n%d\n", mincafea);
      for (int i = 0; i < lengthp; i++)//calcul et affichage de l'age maximal des programmeurs ligmes 54-64
     {
         if (poste[i] == 'p')
@@ -61,7 +61,7 @@ int main()
             }
         }
     }
-    printf("\nLe plus vieux des programmeurs a:\n %d ans\n", maxagep);
+    printf("\nLe plus vieux des programmeurs a:\n%d ans\n", maxagep);
      for (int i = 0; i < lengthp; i++)//calcul et affichage de la moyenne de cafe des programmeurs lignes 65-74
     {
         if (poste[i] == 'o')
@@ -71,7 +71,7 @@ int main()
         }
     }
     avgcafeo = sommecafeo / countop;
-    printf("\nLa consomation moyenne de cafe chez les operateurs est de:\n %.0f\n", avgcafeo);
+    printf("\nLa consomation moyenne de cafe chez les operateurs est de:\n%.0f\n", avgcafeo);
     for (int i = 0; i < lengthp; i++)//calcul et affichage de lage moyen pour tout les postes lignes 75-96
     {
         if (poste[i] == 'o')
@@ -91,9 +91,9 @@ int main()
     avgageo = sommeageo / countop;
     avgagep = sommeagep / countprog;
     avgagea = sommeagea / counta;
-    printf("\nL'age moyen chez les operateurs est de:\n %.0f\n", avgageo);
-    printf("\nL'age moyen chez les programmeurs est de:\n %.0f\n", avgagep);
-    printf("\nL'age moyen chez les analystes est de:\n %.0f\n", avgagea);
+    printf("\nL'age moyen chez les operateurs est de:\n%.0f\n", avgageo);
+    printf("\nL'age moyen chez les programmeurs est de:\n%.0f\n", avgagep);
+    printf("\nL'age moyen chez les analystes est de:\n%.0f\n", avgagea);
     int x, j, tempa, tempN, tempp;//rearangage et affichage des tableaux en ordre croissant d'age lignes 97-130
     for (x = 0; x < (lengtha - 1); ++x)
     {
@@ -132,10 +132,10 @@ int main()
 return 0;
 }
 
-// RESULTATS
-//-------------------------------
+//RESULTATS
+//------------
 // le tableau des poste:
-// 112 112 111 97 112 97 112 97 
+// p p o a p a p a 
 
 // le tableau des cafes:
 // 2 1 7 0 5 2 1 3 
@@ -148,22 +148,22 @@ return 0;
 // il y a 0 secraitaires
 
 // Le plus petits nombre de cafes matinal pour les analyste est:
-//  0
+// 0
 
 // Le plus vieux des programmeurs a:
-//  56 ans
+// 56 ans
 
 // La consomation moyenne de cafe chez les operateurs est de:
-//  7
+// 7
 
 // L'age moyen chez les operateurs est de:
-//  27
+// 27
 
 // L'age moyen chez les programmeurs est de:
-//  37
+// 37
 
 // L'age moyen chez les analystes est de:
-//  26
+// 26
 
 
 // le tableau des ages rearange:
@@ -173,4 +173,4 @@ return 0;
 // 1 2 2 0 7 3 5 1 
 
 // le tableau des postes rearanger:
-// p a p a o a p p
+// p a p a o a p p 

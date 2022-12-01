@@ -1,8 +1,7 @@
 #include<stdio.h>//Gabriel Derome 20216134
-//create pre-main function to print table
 void printTable(char poste[], int Nbcafe[], int age[], int lengthlist)
 {
-    printf("\n\nle tableau des poste:");//affichage des tableaux lignes 12-26
+    printf("\n\nle tableau des poste:");
     for (int i = 0; i < lengthlist; i++) 
         {     
         printf("%c ", poste[i]); 
@@ -21,21 +20,21 @@ void printTable(char poste[], int Nbcafe[], int age[], int lengthlist)
 void countperjob(char poste[], int lengthlist)
 {
     int countprog = 0, countsec = 0, countop = 0, counta = 0;
-    for (int i = 0; i < lengthlist; i++)//compte et affichage du nombre de programmeurs lignes 27-34
+    for (int i = 0; i < lengthlist; i++)
     {
         if (poste[i] == 'p')
         {
             countprog += 1;
         }
     }
-    for (int i = 0; i < lengthlist; i++)//compte  et affichage du nombre de secraitaires lignes 35-42
+    for (int i = 0; i < lengthlist; i++)
     {
         if (poste[i] == 'o')
         {
            countop += 1; 
         }
     }
-    for (int i = 0; i < lengthlist; i++)//compte et affichage du nombre d'analystes lignes 51-58
+    for (int i = 0; i < lengthlist; i++)
     {
         if (poste[i] == 'a')
         {
@@ -46,7 +45,6 @@ void countperjob(char poste[], int lengthlist)
 }
 int trente_ans_trois_cafe(char poste[], int Nbcafe[], int age[], int lengthlist)
 {
-  //count people who are older then 30 and drink at least 3 coffees
     int count = 0;
     for (int i = 0; i < lengthlist; i++)
     if (age[i] > 30 && Nbcafe[i] >= 3)
@@ -58,7 +56,7 @@ int trente_ans_trois_cafe(char poste[], int Nbcafe[], int age[], int lengthlist)
 void MaxCoffeeMaxAge(int Nbcafe[], int age[], int lengthlist)
 {
     int maxagep = 0, maxcafe = 0;
-    for (int i = 0; i < lengthlist; i++)//calcul et affichage de l'age maximal des programmeurs ligmes 54-64
+    for (int i = 0; i < lengthlist; i++)
     {
         if (age[i] > maxagep)
         {
@@ -74,9 +72,7 @@ void MaxCoffeeMaxAge(int Nbcafe[], int age[], int lengthlist)
 }
 void filtertablesperage(char poste[], int Nbcafe[], int age[], int lengthlist)
 {
-   //function that will filter all three tables by ascending age and print them
     int temp;
-    //loop through lengthlist and filter age, Nbcafe and poste by age
     for (int i = 0; i < lengthlist; i++)
     {
         for (int j = i + 1; j < lengthlist; j++)
@@ -97,8 +93,6 @@ void filtertablesperage(char poste[], int Nbcafe[], int age[], int lengthlist)
     }
     printTable(poste, Nbcafe, age, lengthlist);
 }
-//create table  char poste[] = {'p', 'p', 'o', 'a', 'p', 'a', 'p', 'p'}, int Nbcafe[] = {3, 1, 5, 0, 3, 4, 0, 3}, int age[] = {25, 19, 27, 30, 65, 24, 56, 29};
-//call void functions on main
 int main()
 {
     char poste[] = {'p', 'p', 'o', 'a', 'p', 'a', 'p', 'p'};

@@ -1,5 +1,5 @@
 //initialise variables (String  telUDM  =  "5143436111" ,  telJean = "4501897654" ;)
-class tp3B //change name
+class TP3B
 {
     public static void main(String[] args) {
         String telUDM = "5143436111", telJean = "4501897654";

@@ -1,5 +1,5 @@
 //initialise variables (String  telUDM  =  "5143436111" ,  telJean = "4501897654" ;)
-class TP3B
+class tp3B
 {
     public static void main(String[] args) {
         String telUDM = "5143436111", telJean = "4501897654";

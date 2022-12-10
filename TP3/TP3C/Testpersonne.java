@@ -1,4 +1,4 @@
-class testpersonne {
+class Testpersonne {
     public static void main(String[] args) {
         //create 5 persons and and add them to a table with an incrementing id
         personne[] pers = new personne[5];

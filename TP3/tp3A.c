@@ -106,3 +106,26 @@ int main()
     filtertablesperage(poste, Nbcafe, age, lengthlist);
     return 0;
 }
+
+// RESULTATS:
+// le tableau des poste:p p o a p a p p 
+
+// le tableau des cafes:3 1 5 0 3 4 0 3 
+
+// le tableau des ages:25 19 27 30 65 24 56 29 
+
+// Il y as 5 programmeurs, 2 analystes et 1 operateur
+
+
+// Le plus vieux des programmeurs a:
+// 65 ans
+
+// Le plus grand nombre de cafe matinal est:
+// 5
+
+
+// le tableau des poste:p a p o p a p p 
+
+// le tableau des cafes:1 4 3 5 3 0 0 3 
+
+// le tableau des ages:19 24 25 27 29 30 56 65

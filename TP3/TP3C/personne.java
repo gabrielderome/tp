@@ -1,4 +1,4 @@
-public class personne {
+class personne {
     private String naissance;
     private int nbcafe = 1;
     //builder. personne() has to be given AT LEAST a birth date, the number of coffees is optional(1 by default)

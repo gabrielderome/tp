@@ -4,7 +4,7 @@ class tp3B
     public static void main(String[] args) {
         String telUDM = "5143436111", telJean = "4501897654";
         //extract and print sub-string from telUDM and telJean as: "Téléphone d’UdM : (514) 343-6111 \n  Téléphone de Jean : (450) 189-7654"
-        System.out.println("Téléphone d’UdM : (" + telUDM.substring(0, 3) + ") " + telUDM.substring(3, 6) + "-" + telUDM.substring(6, 10) + "\n" + "Téléphone de Jean : (" + telJean.substring(0, 3) + ") " + telJean.substring(3, 6) + "-" + telJean.substring(6, 10));
+        System.out.println("Téléphone d’UDM : (" + telUDM.substring(0, 3) + ") " + telUDM.substring(3, 6) + "-" + telUDM.substring(6, 10) + "\n" + "Téléphone de Jean : (" + telJean.substring(0, 3) + ") " + telJean.substring(3, 6) + "-" + telJean.substring(6, 10));
         //count and display accurence of number 3 in telUDM
         int count3 = 0;
         for (int i = 0; i < telUDM.length(); i++) {
@@ -58,3 +58,13 @@ class tp3B
         System.out.println("Les chiffres impairs communs aux deux numéros de téléphone sont : " + sharedOdd);
     }
 }
+
+// RESULTATS:
+// Téléphone d’UDM : (514) 343-6111
+// Téléphone de Jean : (450) 189-7654
+// Le nombre de 3 dans le numéro de téléphone d’UdM est : 2
+// Le nombre de 1 dans le numéro de téléphone d’UdM est : 4
+// Le nombre de 2 dans le numéro de téléphone de Jean est : 0
+// Le nombre de chiffres impairs dans le numéro de téléphone d’UdM est : 7
+// Le nombre de chiffres pairs dans le numéro de téléphone de Jean est : 5
+// Les chiffres impairs communs aux deux numéros de téléphone sont : 5 | 1 | 

@@ -1,34 +1,30 @@
-//create class personne
 class personne {
     private String naissance;
-    private int nbcafe;
-    private int id = 0;
-    //constructeur with id automatically incremented
-    public personne(String naissance, int nbcafe, int id) {
+    private int nbcafe = 1;
+    //builder. personne() has to be given AT LEAST a birth date, the number of coffees is optional(1 by default)
+    public personne(String naissance) {
+        this.naissance = naissance;
+        this.nbcafe = 1;
+    }
+    public personne(String naissance, int nbcafe) {
         this.naissance = naissance;
         this.nbcafe = nbcafe;
-        this.id = id;
     }
-    //getters
-    public String getNaissance() {
-        return naissance;
-    }
-    public int getNbcafe() {
-        return nbcafe;
-    }
-    public int getId() {
-        return id;
+    //getter afficher() takes a strings as its argument then prints that string with the person's information
+    public String afficher(String str) {
+        if (nbcafe < 1) {
+            nbcafe = 1;
+        }
+        return str + ":\n naissance:" + naissance + "\n nbcafe:" + nbcafe + "\n";
     }
     //main function (printer and adder)
     public static void main(String[] args) {
-        personne pers1 = new personne("1990", 2, 1);
-        personne pers2 = new personne("1991", 3, 2);
-        personne pers3 = new personne("1992", 4, 3);
-        //list of all persons
-        personne[] pers = {pers1, pers2, pers3};
-        //print all as ( information de la personne #{id}:\n naissance:{naissance}\n nbcafe:{nbcafe}\n)
-        for (int i = 0; i < pers.length; i++) {
-            System.out.println("information de la personne #" + pers[i].getId() + ":\n naissance:" + pers[i].getNaissance() + "\n nbcafe:" + pers[i].getNbcafe() + "\n");
-        }
+        personne pers1 = new personne("19/05/1997", 4);
+        personne pers2 = new personne("31/12/1990");
+        personne pers3 = new personne("08/05/1994", 2);
+        //print
+        System.out.println(pers1.afficher("Informations de la premiere personne"));
+        System.out.println(pers2.afficher("Informations de la deuxieme personne"));
+        System.out.println(pers3.afficher("Informations de la troisieme personne"));
     }
 }

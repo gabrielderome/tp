@@ -1,18 +1,21 @@
+//Gabriel Derome 20216134
 class Testpersonne {
     public static void main(String[] args) {
-        //create 5 persons and and add them to a table with an incrementing id
+        //creer 5 nouvelles personnes et les ajouter dans un tableau
         personne[] pers = new personne[5];
         pers[0] = new personne("16/05/2001", 2);
         pers[1] = new personne("02/05/1990");
         pers[2] = new personne("23/11/1996", 5);
         pers[3] = new personne("19/02/2000", 0);
         pers[4] = new personne("30/05/1991", 2);
+        //afficher la legende de la table
         System.out.println("\n\nindex | naissance |nbcafe");
+        //afficher les donnees de la table
         for (int i = 0; i < 5; i++) {
             System.out.println((i + 1)+ "     |" + pers[i].getNaissance() + " |" + pers[i].getNbcafe());
         }
         System.out.println("\n\n");
-        //print the table
+        //afficher les donnees des personnes avec la methode afficher() (test de la methode)
         for (int i = 0; i < 5; i++) {
             if (i == 0){
                 System.out.println(pers[i].afficher("Information de la premiere personne:"));
@@ -25,7 +28,7 @@ class Testpersonne {
             }
         }
         System.out.println("\n\n");
-        //determine who drinks the most coffee and print "la personne qui boit le plus de cafe est la personne #{id}"
+        //determiner et afficher la personne qui boit le plus de cafe
         int max = 0;
         int id = 0;
         for (int i = 0; i < 5; i++) {
@@ -35,18 +38,20 @@ class Testpersonne {
             }
         }
         System.out.println("la personne qui boit le plus de cafe est la personne #" + (id + 1) + "\n\n");
-        //substract 1 from everyone who has at least 1 coffee
-       for (int x = 0; x < 5; x++) {
+        //soustraire 1 au nombre de cafe de chaque personne
+        for (int x = 0; x < 5; x++) {
            if (pers[x].getNbcafe() > 0) {
                 pers[x].setNbcafe(pers[x].getNbcafe() - 1);
            }
-       }
-       System.out.println("\n\nindex | naissance |nbcafe");
+        }
+        //afficher la legende de la nouvelle table
+        System.out.println("\n\nindex | naissance |nbcafe");
+        //afficher les donnees de la nouvelle table
         for (int i = 0; i < 5; i++) {
             System.out.println((i + 1)+ "     |" + pers[i].getNaissance() + " |" + pers[i].getNbcafe());
         }
         System.out.println("\n\n");
-        //count the number of people with naissence matching month 05
+        //compte du nombres de personnes avec une date de naissence en mai.
         int count = 0;
         for (int i = 0; i < 5; i++) {
             if (pers[i].getNaissance().substring(3, 5).equals("05")) {

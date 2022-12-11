@@ -14,7 +14,7 @@ class Testpersonne {
         for (int i = 0; i < 5; i++) {
             System.out.println((i + 1)+ "     |" + pers[i].getNaissance() + " |" + pers[i].getNbcafe());
         }
-        System.out.println("\n\n");
+        System.out.println("\n");
         //afficher les donnees des personnes avec la methode afficher() (test de la methode)
         for (int i = 0; i < 5; i++) {
             if (i == 0){
@@ -27,7 +27,7 @@ class Testpersonne {
                 System.out.println(pers[i].afficher("Information de la " + (i + 1) + "eme personne:"));
             }
         }
-        System.out.println("\n\n");
+        System.out.println("\n");
         //determiner et afficher la personne qui boit le plus de cafe
         int max = 0;
         int id = 0;
@@ -50,7 +50,7 @@ class Testpersonne {
         for (int i = 0; i < 5; i++) {
             System.out.println((i + 1)+ "     |" + pers[i].getNaissance() + " |" + pers[i].getNbcafe());
         }
-        System.out.println("\n\n");
+        System.out.println("\n");
         //compte du nombres de personnes avec une date de naissence en mai.
         int count = 0;
         for (int i = 0; i < 5; i++) {
@@ -58,19 +58,16 @@ class Testpersonne {
                 count++;
             }
         }
-        System.out.println("il y a " + count + " personnes qui sont nee en mai\n\n");
+        System.out.println("il y a " + count + " personnes qui sont nee en mai\n");
     }
 }
-
 //RESULTATS:
-
 // index | naissance |nbcafe
 // 1     |16/05/2001 |2
 // 2     |02/05/1990 |1
 // 3     |23/11/1996 |5
 // 4     |19/02/2000 |0
 // 5     |30/05/1991 |2
-
 
 
 // Information de la premiere personne::
@@ -95,7 +92,6 @@ class Testpersonne {
 
 
 
-
 // la personne qui boit le plus de cafe est la personne #3
 
 
@@ -109,5 +105,6 @@ class Testpersonne {
 // 5     |30/05/1991 |1
 
 
-
 // il y a 3 personnes qui sont nee en mai
+
+// gabrielderome@Gabriels-MBP TP3C % 

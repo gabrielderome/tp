@@ -42,6 +42,26 @@ df['college'] = df['dgreepnum'].apply(lambda x: 1 if x == 3 else 0)
 df['highschool'] = df['dgreepnum'].apply(lambda x: 1 if x == 2 else 0)
 #create new column 'primary' that is 1 if dgreepnum == 1 and 0 otherwise
 df['primary'] = df['dgreepnum'].apply(lambda x: 1 if x == 1 else 0)
+#create new column prov1 that is 1 if prov == 'Ontario' and 0 otherwise
+df['prov1'] = df['prov'].apply(lambda x: 1 if x == 'Ontario' else 0)
+#create new column prov2 that is 1 if prov == 'Qubec' and 0 otherwise
+df['prov2'] = df['prov'].apply(lambda x: 1 if x == 'Qubec' else 0)
+#create new column prov3 that is 1 if prov == 3 and 0 otherwise
+df['prov3'] = df['prov'].apply(lambda x: 1 if x == 3 else 0)
+#create new column prov4 that is 1 if prov == 4 and 0 otherwise
+df['prov4'] = df['prov'].apply(lambda x: 1 if x == 4 else 0)
+#create new column prov5 that is 1 if prov == 5 and 0 otherwise
+df['prov5'] = df['prov'].apply(lambda x: 1 if x == 5 else 0)
+#create new column prov6 that is 1 if prov == 6 and 0 otherwise
+df['prov6'] = df['prov'].apply(lambda x: 1 if x == 6 else 0)
+#create new column prov7 that is 1 if prov == 7 and 0 otherwise
+df['prov7'] = df['prov'].apply(lambda x: 1 if x == 7 else 0)
+#create new column prov8 that is 1 if prov == 8 and 0 otherwise
+df['prov8'] = df['prov'].apply(lambda x: 1 if x == 8 else 0)
+#create new column prov9 that is 1 if prov == 9 and 0 otherwise
+df['prov9'] = df['prov'].apply(lambda x: 1 if x == 9 else 0)
+#create new column prov10 that is 1 if prov == 10 and 0 otherwise
+df['prov10'] = df['prov'].apply(lambda x: 1 if x == 10 else 0)
 
 #count all the rows
 sample_size = df.shape[0]
@@ -53,30 +73,44 @@ df['1986'] = df['recensement'].apply(lambda x: 1 if x == 1986 else 0)
 #create new column '2006' that is 1 if recensement == 2006 and 0 otherwise
 df['2006'] = df['recensement'].apply(lambda x: 1 if x == 2006 else 0)
 
-
-dummy_count = 7
-
-#create a new column for each values in prov and set it to 1 if prov == value and 0 otherwise
-for value in df['prov'].unique():
-    df[value] = df['prov'].apply(lambda x: 1 if x == value else 0)
-    dummy_count += 1
+dummy_count = 17
 
 #create a new column for each values in dgmfspnum and set it to 1 if dgmfspnum == value and 0 otherwise
 for value in df['dgmfspnum'].unique():
-    df[value] = df['dgmfspnum'].apply(lambda x: 1 if x == value else 0)
+    df["dgmfspnum"+ str(value)] = df['dgmfspnum'].apply(lambda x: 1 if x == value else 0)
     dummy_count += 1
 
 print('Question 1 D): The number of dummy variables is ' + str(dummy_count))
 print(df.head())
 
+#import LSE regression from statsmodels
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+#regress lnwage on bac where recensement == 2006
+model_2006_1 = ols(formula="lnwage ~ bac", data=df.loc[df['2006'] == 1]).fit()
+
+#get the coefficient of bac in model_2006
+coefficient_bac_2006_1 = model_2006_1.params['bac']
+
+#print the coefficient of bac in model_2006_1
+print("question 2 a) The coefficient of bac in model_2006 is " + str(coefficient_bac_2006_1))
 
 
-# Question 1 a): The growth of lnwage between 1996 and 2006 is 1%
-# Question 1 C): The sample size is now 173148
-# Question 1 D): The number of dummy variables is 29
-#      lnwage  recensement   id     prov  dgreepnum  dgmfspnum  agep  minid  bac  metier  college  ...  6  8  3  10  9  4  5  NaN  11  1  2
-# 0  6.508437         1986  1.0  Ontario          1         11    43    1.0    0       0        0  ...  0  0  0   0  0  0  0  0.0   1  0  0
-# 1  6.961799         1986  2.0  Ontario          3          5    57    1.0    0       0        1  ...  0  0  0   0  0  0  1  0.0   0  0  0
-# 2  6.508389         1986  3.0        7          2         11    27    1.0    0       0        0  ...  0  0  0   0  0  0  0  0.0   1  0  0
-# 3  6.258992         1986  4.0   Qubec          2         11    57    1.0    0       0        0  ...  0  0  0   0  0  0  0  0.0   1  0  0
-# 5  6.797405         1986  6.0  Ontario          1         11    44    1.0    0       0        0  ...  0  0  0   0  0  0  0  0.0   1  0  0
+#regress lnwage on bac, agep and agep**2 where recensement == 2006
+model_2006_2 = ols(formula="lnwage ~ bac + agep + agep**2", data=df.loc[df['2006'] == 1]).fit()
+
+#get the coefficient of bac in model_2006_2
+coefficient_bac_2006_2 = model_2006_2.params['bac']
+
+#show the coefficient of bac in model_2006_2
+print("question 2 b) The coefficient of bac in model_2006_2 is " + str(coefficient_bac_2006_2))
+
+#regress lnwage on bac, agep, agep**2, provOntario, provQubec, prov3, prov4, prov5, prov6, prov7 prov8, prov9, prov10 where recensement == 2006
+model_2006_3 = ols(formula="lnwage ~ bac + agep + agep**2 + prov3 + prov4 + prov5 + prov6 + prov7 + prov8 + prov9 + prov10 + prov2 + prov1", data=df.loc[df['2006'] == 1]).fit()
+
+#get the coefficient of bac in model_2006_3
+coefficient_bac_2006_3 = model_2006_3.params['bac']
+
+#print the coefficient of bac in model_2006_3
+print("question 2 c) The coefficient of bac in model_2006_3 is " + str(coefficient_bac_2006_3))

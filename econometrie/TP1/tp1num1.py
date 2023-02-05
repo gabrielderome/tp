@@ -38,7 +38,12 @@ df = pd.get_dummies(df, columns=['dgmfspnum', 'dgreepnum', 'recensement', 'prov'
 print("number of new columns: ", df.shape[1])
 
 #compute linear regression of lnwage on bac where recensement is 2006
-model = sm.OLS.from_formula("lnwage ~ bac + recensement_2006", data=df)
+model1 = sm.OLS.from_formula("lnwage ~ bac + recensement_2006", data=df)
 #get the coefficient of bac and print it
-result = model.fit()
-print("coefficient of bac: ", result.params[1])
+print("coefficient of bac: ", model1.fit().params[1])
+#compute the linear regression of lnwage on bac, agep, and agep**2 where recensement is 2006
+model2 = sm.OLS.from_formula("lnwage ~ bac + agep + agep**2 + recensement_2006", data=df)
+print("coefficient of bac: ", model2.fit().params[1])
+#compute the linear regression of lnwage on bac, agep, and agep**2 and the binary variables for prov where recensement is 2006
+model3 = sm.OLS.from_formula("lnwage ~ bac + agep + agep**2 + recensement_2006 + prov_1 + prov_2 + prov_3 + prov_4 + prov_5 + prov_6 + prov_7 + prov_8 + prov_9 + prov_10", data=df)
+print("coefficient of bac: ", model3.fit().params[1])

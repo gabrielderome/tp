@@ -78,12 +78,6 @@ print("coefficient of bac_2006: ", model4.fit().params[1])
 test2 = model4.fit().f_test("prov_1 = prov_2 = prov_3 = prov_4 = prov_5 = prov_6 = prov_7 = prov_8 = prov_9 = prov_10 = 0")
 print(test2)
 
-#create new df with the following schemas: question, (2.a), (2.b), (2.c), (2.d)
-#value for first col = bac, bac_1986, bac_2006, agep, agep**2, provinces
-#value for second col = model1.fit().params[1], N/A, N/A, N/A, N/A, N/A
-#value for third col = model2.fit().params[1], N/A, N/A, model2.fit().params[2], model2.fit().params[3], N/A
-#value for fourth col = model3.fit().params[1], N/A, N/A, model3.fit().params[2], model3.fit().params[3], test1
-#value for fifth col = N/A, model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2
 df2 = pd.DataFrame({'question': ['bac', 'bac_1986', 'bac_2006', 'agep', 'agep**2', 'provinces'], '(2.a)': [model1.fit().params[1], 'N/A', 'N/A', 'N/A', 'N/A', 'N/A'], '(2.b)': [model2.fit().params[1], 'N/A', 'N/A', model2.fit().params[2], model2.fit().params[3], 'N/A'], '(2.c)': [model3.fit().params[1], 'N/A', 'N/A', model3.fit().params[2], model3.fit().params[3], test1], '(2.d)': ['N/A', model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2]})
-#export df2 to csv file with no index, nammed 'table.csv'. save the table in "/Users/gabrielderome/Downloads/"
+
 df2.to_csv(r'/Users/gabrielderome/Downloads/table.csv', index=False)

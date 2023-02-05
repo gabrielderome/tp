@@ -39,11 +39,51 @@ print("number of new columns: ", df.shape[1])
 
 #compute linear regression of lnwage on bac where recensement is 2006
 model1 = sm.OLS.from_formula("lnwage ~ bac + recensement_2006", data=df)
+#display the model
+print(model1.fit().summary())
 #get the coefficient of bac and print it
 print("coefficient of bac: ", model1.fit().params[1])
 #compute the linear regression of lnwage on bac, agep, and agep**2 where recensement is 2006
 model2 = sm.OLS.from_formula("lnwage ~ bac + agep + agep**2 + recensement_2006", data=df)
+#display the model2
+print(model2.fit().summary())
 print("coefficient of bac: ", model2.fit().params[1])
+#print the coeficient of age and age**2
+print("coefficient of age: ", model2.fit().params[2])
+print("coefficient of age**2: ", model2.fit().params[3])
 #compute the linear regression of lnwage on bac, agep, and agep**2 and the binary variables for prov where recensement is 2006
 model3 = sm.OLS.from_formula("lnwage ~ bac + agep + agep**2 + recensement_2006 + prov_1 + prov_2 + prov_3 + prov_4 + prov_5 + prov_6 + prov_7 + prov_8 + prov_9 + prov_10", data=df)
+#display the model3
+print(model3.fit().summary())
 print("coefficient of bac: ", model3.fit().params[1])
+#test wether lnwage and the binary variables for prov are jointly significant
+test1 = model3.fit().f_test("prov_1 = prov_2 = prov_3 = prov_4 = prov_5 = prov_6 = prov_7 = prov_8 = prov_9 = prov_10 = 0")
+print(test1)
+#print the coefficient of bac
+print("coefficient of bac: ", model3.fit().params[1])
+#create dummy variable for bac_1986 and bac_2006
+df['bac_1986'] = np.where((df['bac'] == 1) & (df['recensement_1986'] == 1), 1, 0)
+df['bac_2006'] = np.where((df['bac'] == 1) & (df['recensement_2006'] == 1), 1, 0)
+#drop the column bac
+df = df.drop(columns=['bac'])
+#compute the linear regression of lnwage on bac_1986, bac_2006, agep, and agep**2 and the binary variables for prov
+model4 = sm.OLS.from_formula("lnwage ~ bac_1986 + bac_2006 + agep + agep**2 + prov_1 + prov_2 + prov_3 + prov_4 + prov_5 + prov_6 + prov_7 + prov_8 + prov_9 + prov_10", data=df)
+#display the model4
+print(model4.fit().summary())
+#print the coeficient of bac_1986
+print("coefficient of bac_1986: ", model4.fit().params[0])
+#print the coeficient of bac_2006
+print("coefficient of bac_2006: ", model4.fit().params[1])
+#test wether lnwage and the binary variables for prov are jointly significant
+test2 = model4.fit().f_test("prov_1 = prov_2 = prov_3 = prov_4 = prov_5 = prov_6 = prov_7 = prov_8 = prov_9 = prov_10 = 0")
+print(test2)
+
+#create new df with the following schemas: question, (2.a), (2.b), (2.c), (2.d)
+#value for first col = bac, bac_1986, bac_2006, agep, agep**2, provinces
+#value for second col = model1.fit().params[1], N/A, N/A, N/A, N/A, N/A
+#value for third col = model2.fit().params[1], N/A, N/A, model2.fit().params[2], model2.fit().params[3], N/A
+#value for fourth col = model3.fit().params[1], N/A, N/A, model3.fit().params[2], model3.fit().params[3], test1
+#value for fifth col = N/A, model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2
+df2 = pd.DataFrame({'question': ['bac', 'bac_1986', 'bac_2006', 'agep', 'agep**2', 'provinces'], '(2.a)': [model1.fit().params[1], 'N/A', 'N/A', 'N/A', 'N/A', 'N/A'], '(2.b)': [model2.fit().params[1], 'N/A', 'N/A', model2.fit().params[2], model2.fit().params[3], 'N/A'], '(2.c)': [model3.fit().params[1], 'N/A', 'N/A', model3.fit().params[2], model3.fit().params[3], test1], '(2.d)': ['N/A', model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2]})
+#export df2 to csv file with no index, nammed 'table.csv'. save the table in "/Users/gabrielderome/Downloads/"
+df2.to_csv(r'/Users/gabrielderome/Downloads/table.csv', index=False)

@@ -12,9 +12,15 @@ df3 = pd.read_stata("/Users/gabrielderome/Downloads/rec2001_2006.dta")
 df_other_variables = pd.concat([df2, df3], axis=0)
 df = pd.merge(df1, df_other_variables, on=['id', 'recensement'])
 
+#add all unique values from prov in a list
+prov_unique_pre = df['prov'].unique()
+
 #change all the values in the column prov where 'Qu\x8fbec' to '2' and where 'Ontario' to '1'
 df['prov'] = df['prov'].replace('Qu\x8fbec', '2')
 df['prov'] = df['prov'].replace('Ontario', '1')
+
+#add all unique values from prov in a list
+prov_unique_post = df['prov'].unique()
 
 #filter df to get only the fields where recensement is 1986 or 2006 and where dgreepnum is either '7' '6' '5' '2' '1'
 df = df[(df['recensement'] == 1986) | (df['recensement'] == 2006)]
@@ -81,3 +87,17 @@ print(test2)
 df2 = pd.DataFrame({'question': ['bac', 'bac_1986', 'bac_2006', 'agep', 'agep**2', 'provinces'], '(2.a)': [model1.fit().params[1], 'N/A', 'N/A', 'N/A', 'N/A', 'N/A'], '(2.b)': [model2.fit().params[1], 'N/A', 'N/A', model2.fit().params[2], model2.fit().params[3], 'N/A'], '(2.c)': [model3.fit().params[1], 'N/A', 'N/A', model3.fit().params[2], model3.fit().params[3], test1], '(2.d)': ['N/A', model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2]})
 
 df2.to_csv(r'/Users/gabrielderome/Downloads/table.csv', index=False)
+
+
+
+
+#data quality issue
+print("\nprov_unique_pre:\n")
+
+for x in prov_unique_pre:
+    print(x)
+    
+    
+print("\nprov_unique_post:\n")
+for x in prov_unique_post:
+    print(x)

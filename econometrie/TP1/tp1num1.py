@@ -70,6 +70,7 @@ print("coefficient of bac: ", model3.fit().params[1])
 #create dummy variable for bac_1986 and bac_2006
 df['bac_1986'] = np.where((df['bac'] == 1) & (df['recensement_1986'] == 1), 1, 0)
 df['bac_2006'] = np.where((df['bac'] == 1) & (df['recensement_2006'] == 1), 1, 0)
+df_w_bac = df
 #drop the column bac
 df = df.drop(columns=['bac'])
 #compute the linear regression of lnwage on bac_1986, bac_2006, agep, and agep**2 and the binary variables for prov
@@ -87,17 +88,3 @@ print(test2)
 df2 = pd.DataFrame({'question': ['bac', 'bac_1986', 'bac_2006', 'agep', 'agep**2', 'provinces'], '(2.a)': [model1.fit().params[1], 'N/A', 'N/A', 'N/A', 'N/A', 'N/A'], '(2.b)': [model2.fit().params[1], 'N/A', 'N/A', model2.fit().params[2], model2.fit().params[3], 'N/A'], '(2.c)': [model3.fit().params[1], 'N/A', 'N/A', model3.fit().params[2], model3.fit().params[3], test1], '(2.d)': ['N/A', model4.fit().params[0], model4.fit().params[1], model4.fit().params[2], model4.fit().params[3], test2]})
 
 df2.to_csv(r'/Users/gabrielderome/Downloads/table.csv', index=False)
-
-
-
-
-#data quality issue
-print("\nprov_unique_pre:\n")
-
-for x in prov_unique_pre:
-    print(x)
-    
-    
-print("\nprov_unique_post:\n")
-for x in prov_unique_post:
-    print(x)

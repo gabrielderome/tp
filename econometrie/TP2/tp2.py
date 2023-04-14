@@ -81,6 +81,25 @@ df['hrswork2'] = df['hrswork2'].astype('string').astype('float')
 #create new column where ftotinc - inctot
 df['nonwifeinc'] = df['ftotinc'] - df['inctot']
 
+#create column oneofboth where true if firstborn_male != secondborn_male
+df['oneofboth'] = df['firstborn_male'] != df['secondborn_male']
+#convert oneofboth to int
+df['oneofboth'] = df['oneofboth'].astype(int)
+
+#create column for balck (1 where race == 'Black' else 0) and a column with white (1 where race == 'White' else 0)
+df['black'] = df['race'] == 'Black'
+df['white'] = df['race'] == 'White'
+#convert black and white to int
+df['black'] = df['black'].astype(int)
+df['white'] = df['white'].astype(int)
+#create column for hispanic where 1 if race == 'Hispanic' else 0
+df['hisp'] = df['race'] == 'Hispanic'
+df['other_race'] = df['race'] == 'Other race, nec'
+#convert hisp and other_race to int
+df['hisp'] = df['hisp'].astype(int)
+df['other_race'] = df['other_race'].astype(int)
+
+
 #create df where only sex == 'Female'
 female = df.loc[df['sex'] == 'Female']
 married_female = df.loc[df['married'] == 1]
@@ -92,7 +111,7 @@ married_female_rows = married_female.shape[0]
 target_cols = ['nchild', 'morethantwo', 'firstborn_male', 'secondborn_male', 'twoboys', 'twogirls', 'samesex', 'twins',"age", 'agefirst', 'labforce', 'wkswork2', 'hrswork2', 'inctot', 'ftotinc', 'nonwifeinc']
 
 for x in target_cols:
-    print('\n')
+    print('\nTABLEAU2\n')
     mean_all_woman = female[x].mean()
     std_all_woman = female[x].std()
     mean_married_women = married_female[x].mean()
@@ -102,4 +121,24 @@ for x in target_cols:
     
 print("\nsample size for all women :", female.shape[0])
 print("sample size for married women :", married_female.shape[0])
+print('\nTABLEAU3\n')
 
+
+target_cols = ['oneofboth', 'twoboys', 'twogirls', 'samesex']
+for x in target_cols:
+    print(x, 'ratio_all :', female[x].mean())
+    print(x, 'ratio_married :', married_female[x].mean())
+
+#compute the diference in mean for 'age', 'agefirst', 'black', 'white', 'Other_race', 'hisp'
+
+target_list = ['age', 'agefirst', 'black', 'white', 'other_race', 'hisp']
+
+samesex_df = df.loc[df['samesex'] == 1]
+print("\n TABLEAU4")
+for x in target_list:
+    print("\n", x)
+    all_mean = female[x].mean()
+    same_sex_mean = samesex_df[x].mean()
+    dif =  all_mean - same_sex_mean
+    print(dif)
+    

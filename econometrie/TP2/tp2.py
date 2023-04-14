@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from statsmodels.sandbox.regression.gmm import IV2SLS
 
@@ -178,7 +176,7 @@ model2_2sls = IV2SLS(female[dependent_var], female[regressed_var_list], female[i
 print(model2_2sls.summary())
 
 
-#resultats:
+# resultats:
 
 # TABLEAU2
 

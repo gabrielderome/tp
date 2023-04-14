@@ -85,7 +85,7 @@ df['oneofboth'] = df['firstborn_male'] != df['secondborn_male']
 df['oneofboth'] = df['oneofboth'].astype(int)
 
 #create column for balck (1 where race == 'Black' else 0) and a column with white (1 where race == 'White' else 0)
-df['black'] = df['race'] == 'Black'
+df['black'] = df['race'] == 'Black/Negro'
 df['white'] = df['race'] == 'White'
 #convert black and white to int
 df['black'] = df['black'].astype(int)
@@ -175,6 +175,8 @@ print("\n2SLS with twoboys and twogirls as instruments :\n")
 model2_2sls = IV2SLS(female[dependent_var], female[regressed_var_list], female[instrument2]).fit()
 print(model2_2sls.summary())
 
+#print al values for df['race]
+print(df['race'].unique())
 
 # resultats:
 
@@ -268,7 +270,7 @@ print(model2_2sls.summary())
 # -0.005953611016526139
 
 #  black
-# 0.0
+# 4.882346038097285e-05
 
 #  white
 # -3.0278275079287376e-05
@@ -313,7 +315,7 @@ print(model2_2sls.summary())
 # Model:                            OLS   Adj. R-squared:                  0.660
 # Method:                 Least Squares   F-statistic:                 2.433e+04
 # Date:                Fri, 14 Apr 2023   Prob (F-statistic):               0.00
-# Time:                        01:38:54   Log-Likelihood:                -8050.0
+# Time:                        09:54:30   Log-Likelihood:                -8050.0
 # No. Observations:               50187   AIC:                         1.611e+04
 # Df Residuals:                   50182   BIC:                         1.615e+04
 # Df Model:                           4                                         
@@ -349,7 +351,7 @@ print(model2_2sls.summary())
 # Method:                     Two Stage   F-statistic:                       nan
 #                         Least Squares   Prob (F-statistic):                nan
 # Date:                Fri, 14 Apr 2023                                         
-# Time:                        01:38:54                                         
+# Time:                        09:54:30                                         
 # No. Observations:               50187                                         
 # Df Residuals:                   50183                                         
 # Df Model:                           4                                         
@@ -376,7 +378,7 @@ print(model2_2sls.summary())
 # Method:                     Two Stage   F-statistic:                       nan
 #                         Least Squares   Prob (F-statistic):                nan
 # Date:                Fri, 14 Apr 2023                                         
-# Time:                        01:38:54                                         
+# Time:                        09:54:30                                         
 # No. Observations:               50187                                         
 # Df Residuals:                   50183                                         
 # Df Model:                           4                                         
@@ -393,3 +395,10 @@ print(model2_2sls.summary())
 # Skew:                          -1.315   Prob(JB):                         0.00
 # Kurtosis:                       9.669   Cond. No.                     3.91e+03
 # ==============================================================================
+
+
+# lables for reace: 
+# ['White', 'Other Asian or Pacific Islander', 'Black/Negro', 'American Indian or Alaska Native', 'Chinese', 'Other race, nec', 'Japanese']
+# Categories (7, object): ['White' < 'Black/Negro' < 'American Indian or Alaska Native' <
+#                          'Chinese' < 'Japanese' < 'Other Asian or Pacific Islander' <
+#                          'Other race, nec']

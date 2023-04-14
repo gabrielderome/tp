@@ -109,9 +109,9 @@ female_rows = female.shape[0]
 married_female_rows = married_female.shape[0]
 
 target_cols = ['nchild', 'morethantwo', 'firstborn_male', 'secondborn_male', 'twoboys', 'twogirls', 'samesex', 'twins',"age", 'agefirst', 'labforce', 'wkswork2', 'hrswork2', 'inctot', 'ftotinc', 'nonwifeinc']
-
+print('\nTABLEAU2\n')
 for x in target_cols:
-    print('\nTABLEAU2\n')
+    print('\n', x, ':')
     mean_all_woman = female[x].mean()
     std_all_woman = female[x].std()
     mean_married_women = married_female[x].mean()

@@ -27,6 +27,9 @@ data_25_55 = data[
 #create a tenure_sqrd variable that represents tenure column squarred
 data_25_55['tenure_sqrd'] = data_25_55['tenure']**2
 
+#print data_25_55 with tenure and tenure_sqrd columns
+print(data_25_55[['tenure', 'tenure_sqrd']])
+
 #print all possible values for educ
 dummy_var = data_25_55['educ'].unique()
 
@@ -104,23 +107,15 @@ select_data_gender = data_w_dummy[
 #drop all rows with missing values
 cleaned_data = select_data.dropna()
 cleaned_data_gender = select_data_gender.dropna()
+#print both number of rows in cleaned_data and cleaned_data_gender
+print(cleaned_data.shape[0])
+print(cleaned_data_gender.shape[0])
+
+#number of records: 26334
 
 #create a linear regression model that assesses the impact of tenure, tenure_sqrd, bac, more_than_bac, secondaire, partial_post_secondaire, post_secondaire, no_secondaire on lwage
-model = sm.OLS(
-    cleaned_data['lwage'],
-    cleaned_data[
-        [
-            'tenure',
-            'tenure_sqrd',
-            'bac',
-            'more_than_bac',
-            'secondaire',
-            'partial_post_secondaire',
-            'post_secondaire',
-            'no_secondaire'
-            ]
-        ]
-    )
+
+model = sm.OLS.from_formula("lwage ~ tenure + tenure_sqrd + bac + more_than_bac + secondaire + partial_post_secondaire + post_secondaire + no_secondaire", data=cleaned_data)
 results = model.fit()
 print(
     results.summary()
@@ -128,152 +123,128 @@ print(
 
 #--------------------------------------------
 
-#                                  OLS Regression Results                                
-# =======================================================================================
-# Dep. Variable:                  lwage   R-squared (uncentered):                   0.991
-# Model:                            OLS   Adj. R-squared (uncentered):              0.991
-# Method:                 Least Squares   F-statistic:                          3.534e+05
-# Date:                Mon, 22 Jan 2024   Prob (F-statistic):                        0.00
-# Time:                        13:54:14   Log-Likelihood:                         -30338.
-# No. Observations:               26334   AIC:                                  6.069e+04
-# Df Residuals:                   26326   BIC:                                  6.076e+04
-# Df Model:                           8                                                  
-# Covariance Type:            nonrobust                                                  
+#                             OLS Regression Results
+# ==============================================================================
+# Dep. Variable:                  lwage   R-squared:                       0.197
+# Model:                            OLS   Adj. R-squared:                  0.197
+# Method:                 Least Squares   F-statistic:                     808.5
+# Date:                Thu, 25 Jan 2024   Prob (F-statistic):               0.00
+# Time:                        09:37:20   Log-Likelihood:                -12441.
+# No. Observations:               26334   AIC:                         2.490e+04
+# Df Residuals:                   26325   BIC:                         2.497e+04
+# Df Model:                           8
+# Covariance Type:            nonrobust
 # ===========================================================================================
 #                               coef    std err          t      P>|t|      [0.025      0.975]
 # -------------------------------------------------------------------------------------------
-# tenure                      0.0075      0.000     33.276      0.000       0.007       0.008
-# tenure_sqrd              -2.17e-05   9.34e-07    -23.235      0.000   -2.35e-05   -1.99e-05
-# bac                         7.7102      0.013    602.763      0.000       7.685       7.735
-# more_than_bac               7.8624      0.017    471.949      0.000       7.830       7.895
-# secondaire                  7.4093      0.014    511.906      0.000       7.381       7.438
-# partial_post_secondaire     7.4467      0.025    298.313      0.000       7.398       7.496
-# post_secondaire             7.5496      0.011    664.105      0.000       7.527       7.572
-# no_secondaire               7.3711      0.026    280.017      0.000       7.319       7.423
+# Intercept                   7.4513      0.027    275.971      0.000       7.398       7.504
+# tenure                      0.0029      0.000     25.030      0.000       0.003       0.003
+# tenure_sqrd             -5.635e-06   4.77e-07    -11.817      0.000   -6.57e-06    -4.7e-06
+# bac                         0.4536      0.027     16.749      0.000       0.401       0.507
+# more_than_bac               0.5982      0.028     21.639      0.000       0.544       0.652
+# secondaire                  0.1443      0.027      5.279      0.000       0.091       0.198
+# partial_post_secondaire     0.1772      0.029      6.063      0.000       0.120       0.234
+# post_secondaire             0.2906      0.027     10.794      0.000       0.238       0.343
+# no_secondaire               0.1006      0.030      3.407      0.001       0.043       0.158
 # ==============================================================================
-# Omnibus:                    32396.451   Durbin-Watson:                   1.985
-# Prob(Omnibus):                  0.000   Jarque-Bera (JB):          4451036.048
-# Skew:                           6.769   Prob(JB):                         0.00
-# Kurtosis:                      65.235   Cond. No.                     1.42e+05
+# Omnibus:                       70.638   Durbin-Watson:                   2.003
+# Prob(Omnibus):                  0.000   Jarque-Bera (JB):               91.341
+# Skew:                           0.005   Prob(JB):                     1.46e-20
+# Kurtosis:                       3.288   Cond. No.                     6.93e+05
 # ==============================================================================
+
 
 #--------------------------------------------
 
-#reponse question 3 #1: le coef associe a bac est de 7.7102 et le coef de no_secondaire est de 7.3711. on peux donc observer que le fait davoir un bac versus avoir le plus petit niveau deducation possible (no_secondaire) augmente le salaire de 7.7102-7.3711 = 0.3391
+#reponse question 3 #1: le coef associe a bac est de 0.4536 et le coef de no_secondaire est de 0.1006. on peux donc observer que le fait davoir un bac versus avoir le plus petit niveau deducation possible (no_secondaire) augmente le log du salaire de 0.4536-0.1006 = 0.353
 
 #redo the same regression with cleaned_data_gender but also adding the dummy variable femme
-model2 = sm.OLS(
-    cleaned_data_gender['lwage'],
-    cleaned_data_gender[
-        [
-            'tenure',
-            'tenure_sqrd',
-            'bac',
-            'more_than_bac',
-            'secondaire',
-            'partial_post_secondaire',
-            'post_secondaire',
-            'no_secondaire',
-            'femme'
-         ]
-        ]
-    )
+model2 = sm.OLS.from_formula("lwage ~ tenure + tenure_sqrd + bac + more_than_bac + secondaire + partial_post_secondaire + post_secondaire + no_secondaire + femme", data=cleaned_data_gender)
+
 results2 = model2.fit()
 print(results2.summary())
 
 #--------------------------------------------
 
-#                                 OLS Regression Results                                
-# =======================================================================================
-# Dep. Variable:                  lwage   R-squared (uncentered):                   0.991
-# Model:                            OLS   Adj. R-squared (uncentered):              0.991
-# Method:                 Least Squares   F-statistic:                          3.150e+05
-# Date:                Mon, 22 Jan 2024   Prob (F-statistic):                        0.00
-# Time:                        14:10:31   Log-Likelihood:                         -30301.
-# No. Observations:               26334   AIC:                                  6.062e+04
-# Df Residuals:                   26325   BIC:                                  6.069e+04
-# Df Model:                           9                                                  
-# Covariance Type:            nonrobust                                                  
+#                             OLS Regression Results
+# ==============================================================================
+# Dep. Variable:                  lwage   R-squared:                       0.230
+# Model:                            OLS   Adj. R-squared:                  0.229
+# Method:                 Least Squares   F-statistic:                     872.4
+# Date:                Thu, 25 Jan 2024   Prob (F-statistic):               0.00
+# Time:                        09:37:20   Log-Likelihood:                -11897.
+# No. Observations:               26334   AIC:                         2.381e+04
+# Df Residuals:                   26324   BIC:                         2.390e+04
+# Df Model:                           9
+# Covariance Type:            nonrobust
 # ===========================================================================================
 #                               coef    std err          t      P>|t|      [0.025      0.975]
 # -------------------------------------------------------------------------------------------
-# tenure                      0.0076      0.000     33.449      0.000       0.007       0.008
-# tenure_sqrd             -2.174e-05   9.33e-07    -23.317      0.000   -2.36e-05   -1.99e-05
-# bac                         7.7557      0.014    560.590      0.000       7.729       7.783
-# more_than_bac               7.9057      0.017    454.656      0.000       7.872       7.940
-# secondaire                  7.4407      0.015    499.009      0.000       7.411       7.470
-# partial_post_secondaire     7.4816      0.025    296.198      0.000       7.432       7.531
-# post_secondaire             7.5872      0.012    623.313      0.000       7.563       7.611
-# no_secondaire               7.3954      0.026    279.699      0.000       7.344       7.447
-# femme                      -0.0814      0.010     -8.562      0.000      -0.100      -0.063
+# Intercept                   7.5017      0.026    283.172      0.000       7.450       7.554
+# tenure                      0.0029      0.000     25.780      0.000       0.003       0.003
+# tenure_sqrd             -5.616e-06   4.67e-07    -12.023      0.000   -6.53e-06    -4.7e-06
+# bac                         0.4928      0.027     18.557      0.000       0.441       0.545
+# more_than_bac               0.6330      0.027     23.361      0.000       0.580       0.686
+# secondaire                  0.1560      0.027      5.827      0.000       0.104       0.208
+# partial_post_secondaire     0.1956      0.029      6.834      0.000       0.140       0.252
+# post_secondaire             0.3145      0.026     11.919      0.000       0.263       0.366
+# no_secondaire               0.0986      0.029      3.410      0.001       0.042       0.155
+# femme                      -0.1578      0.005    -33.333      0.000      -0.167      -0.149
 # ==============================================================================
-# Omnibus:                    32672.154   Durbin-Watson:                   1.985
-# Prob(Omnibus):                  0.000   Jarque-Bera (JB):          4625601.888
-# Skew:                           6.865   Prob(JB):                         0.00
-# Kurtosis:                      66.459   Cond. No.                     1.49e+05
+# Omnibus:                      134.232   Durbin-Watson:                   2.003
+# Prob(Omnibus):                  0.000   Jarque-Bera (JB):              185.654
+# Skew:                          -0.050   Prob(JB):                     4.85e-41
+# Kurtosis:                       3.399   Cond. No.                     6.93e+05
 # ==============================================================================
 
+
 #--------------------------------------------
-#reponse question 3 #2: le coef de femme est de -0.0814. on peux donc observer que le fait detre une femme versus un homme diminue le salaire de 0.0814
+#reponse question 3 #2: le coef de femme est de  -0.1578. on peux donc observer que le fait detre une femme versus un homme diminue le log du salaire de 0.1578
 
 #using cleaned_data_gender create a new variable, bac_homme which will be 0 if femme = 1 or bac == 0 and 1 otherwise
 cleaned_data_gender['bac_homme'] = np.where((cleaned_data_gender["femme"] == 0) & (cleaned_data_gender["bac"] == 1), 1, 0)
 cleaned_data_gender['bac_femme'] = np.where((cleaned_data_gender["femme"] == 1) & (cleaned_data_gender["bac"] == 1), 1, 0)
 
-#redo the regression with bac_homme and bac_femme instead of bac.
-model3 = sm.OLS(
-    cleaned_data_gender['lwage'],
-    cleaned_data_gender[
-        [
-            'tenure',
-            'tenure_sqrd',
-            'more_than_bac',
-            'secondaire',
-            'partial_post_secondaire',
-            'post_secondaire',
-            'no_secondaire',
-            'femme',
-            'bac_homme',
-            'bac_femme'
-         ]
-        ]
-    )
+model3 = sm.OLS.from_formula("lwage ~ tenure + tenure_sqrd + bac + more_than_bac + secondaire + partial_post_secondaire + post_secondaire + no_secondaire + femme + bac_homme + bac_femme", data=cleaned_data_gender)
 results3 = model3.fit()
 print(results3.summary())
 
 #--------------------------------------------
 
-#                                  OLS Regression Results                                
-# =======================================================================================
-# Dep. Variable:                  lwage   R-squared (uncentered):                   0.991
-# Model:                            OLS   Adj. R-squared (uncentered):              0.991
-# Method:                 Least Squares   F-statistic:                          2.835e+05
-# Date:                Mon, 22 Jan 2024   Prob (F-statistic):                        0.00
-# Time:                        14:48:20   Log-Likelihood:                         -30301.
-# No. Observations:               26334   AIC:                                  6.062e+04
-# Df Residuals:                   26324   BIC:                                  6.070e+04
-# Df Model:                          10                                                  
-# Covariance Type:            nonrobust                                                  
+#                            OLS Regression Results
+# ==============================================================================
+# Dep. Variable:                  lwage   R-squared:                       0.233
+# Model:                            OLS   Adj. R-squared:                  0.232
+# Method:                 Least Squares   F-statistic:                     798.4
+# Date:                Thu, 25 Jan 2024   Prob (F-statistic):               0.00
+# Time:                        09:37:20   Log-Likelihood:                -11846.
+# No. Observations:               26334   AIC:                         2.371e+04
+# Df Residuals:                   26323   BIC:                         2.380e+04
+# Df Model:                          10
+# Covariance Type:            nonrobust
 # ===========================================================================================
 #                               coef    std err          t      P>|t|      [0.025      0.975]
 # -------------------------------------------------------------------------------------------
-# tenure                      0.0076      0.000     33.449      0.000       0.007       0.008
-# tenure_sqrd             -2.174e-05   9.33e-07    -23.316      0.000   -2.36e-05   -1.99e-05
-# more_than_bac               7.9049      0.018    447.409      0.000       7.870       7.940
-# secondaire                  7.4401      0.015    492.944      0.000       7.411       7.470
-# partial_post_secondaire     7.4809      0.025    294.652      0.000       7.431       7.531
-# post_secondaire             7.5866      0.012    607.763      0.000       7.562       7.611
-# no_secondaire               7.3949      0.027    278.988      0.000       7.343       7.447
-# femme                      -0.0801      0.011     -7.301      0.000      -0.102      -0.059
-# bac_homme                   7.7580      0.017    461.690      0.000       7.725       7.791
-# bac_femme                   7.7527      0.019    416.634      0.000       7.716       7.789
+# Intercept                   7.5116      0.026    283.892      0.000       7.460       7.563
+# tenure                      0.0029      0.000     25.729      0.000       0.003       0.003
+# tenure_sqrd             -5.599e-06   4.66e-07    -12.010      0.000   -6.51e-06   -4.69e-06
+# bac                         0.3270      0.018     18.503      0.000       0.292       0.362
+# more_than_bac               0.6391      0.027     23.623      0.000       0.586       0.692
+# secondaire                  0.1580      0.027      5.914      0.000       0.106       0.210
+# partial_post_secondaire     0.1988      0.029      6.958      0.000       0.143       0.255
+# post_secondaire             0.3187      0.026     12.100      0.000       0.267       0.370
+# no_secondaire               0.0983      0.029      3.404      0.001       0.042       0.155
+# femme                      -0.1853      0.005    -33.974      0.000      -0.196      -0.175
+# bac_homme                   0.1084      0.010     10.399      0.000       0.088       0.129
+# bac_femme                   0.2185      0.010     21.128      0.000       0.198       0.239
 # ==============================================================================
-# Omnibus:                    32668.396   Durbin-Watson:                   1.985
-# Prob(Omnibus):                  0.000   Jarque-Bera (JB):          4623293.729
-# Skew:                           6.864   Prob(JB):                         0.00
-# Kurtosis:                      66.443   Cond. No.                     1.59e+05
+# Omnibus:                      137.879   Durbin-Watson:                   2.002
+# Prob(Omnibus):                  0.000   Jarque-Bera (JB):              192.869
+# Skew:                          -0.047   Prob(JB):                     1.32e-42
+# Kurtosis:                       3.409   Cond. No.                     2.37e+18
 # ==============================================================================
-
 #--------------------------------------------
 
-#reponse question 3 #3: le coef de bac_homme est 7.7580 et femme_bac est 7.7527. on peux donc observer le fait que la diference entre une homme avec un bac versus une femme avec un bac n'est pas si grande, cela peut indiquer que le fait detre une femme ne fait pas necessairement descendre le salaire espere une fois que le bac est obtenu. dans les deux cas si on compare a no_secondaire (le plus petit niveau d'eductaion disponible dont le coef est de 7.3949) on vois une diference de 7.7580 - 7.3949 = 0.3631 pour les hommes et 7.7527 - 7.3949 = 0.3578 pour les femmes. L'impacte davoir un bac est donc plus important que celui detre un homme ou une femme.
+#reponse question 3 #3 et #4: le coef de bac_homme est 0.1084 et femme_bac est 0.2185. on peux donc observer que la dif entre bac_homme et bac_femme est de 0.2185-0.1084 = 0.1101. on peux donc observer que le fait detre une femme avec un bac versus un homme avec un bac augmente le log du salaire de 0.1101
+
+# reponse question 3 #5: soit le  model2 (lwage = b0 + b1(tenure) + b2(tenure_sqrd) + ... + b9(femme)), on observe que le coef de tenure est de 0.0076 et donc

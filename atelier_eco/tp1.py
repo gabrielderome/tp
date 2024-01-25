@@ -247,4 +247,5 @@ print(results3.summary())
 
 #reponse question 3 #3 et #4: le coef de bac_homme est 0.1084 et femme_bac est 0.2185. on peux donc observer que la dif entre bac_homme et bac_femme est de 0.2185-0.1084 = 0.1101. on peux donc observer que le fait detre une femme avec un bac versus un homme avec un bac augmente le log du salaire de 0.1101
 
-# reponse question 3 #5: soit le  model2 (lwage = b0 + b1(tenure) + b2(tenure_sqrd) + ... + b9(femme)), on observe que le coef de tenure est de 0.0076 et donc
+# reponse question 3 #5: soit le  model2 (lwage = b0 + b1(tenure) + b2(tenure_sqrd) + ... + b9(femme)), si on derrive par wage on a Dlwage/DU = b1 + 2b2(tenure) -> CPO -> 0 = b1 + 2 (b2)(tenure) -> b1 = 2 (b2)(tenure) -> b1/(2 (b2)) = tenure
+#donce tenure = 0.0029 / 2 (-5.616e-06) = -258.5
